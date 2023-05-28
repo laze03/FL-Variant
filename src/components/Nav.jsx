@@ -19,7 +19,6 @@ const Nav = (props) => (
         </li>
       </ul>
     </div>
-    <FontAwesomeIcon icon={faQuestion} size="l" style={{ color: "#ffffff" }} />
   </nav>
 );
 
