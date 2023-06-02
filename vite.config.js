@@ -7,6 +7,9 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": "http://localhost:5000/",
+      "/upload": "http://localhost:5000/",
+      "/dashboard": "http://localhost:5000/",
+      "/filters": "http://localhost:5000/",
     },
   },
   plugins: [react()],

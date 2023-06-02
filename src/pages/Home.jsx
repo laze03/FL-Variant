@@ -8,19 +8,20 @@ import science from "../assets/science.png";
 
 const Home = () => {
   const inputRef = useRef(null);
+  const dashboardRef = useRef(null);
   const [backendData, setBackendData] = useState([]);
 
   const handleFileUpload = (file) => {
     const formData = new FormData();
     formData.append("file", file);
     axios
-      .post("api", formData, {
+      .post("http://localhost:5000/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        dashboardRef.current.click(); // Redirect to dashboard
       });
   };
 
@@ -28,18 +29,9 @@ const Home = () => {
     inputRef.current.click();
   };
 
-  useEffect(() => {
-    axios
-      .get("api")
-      .then((res) => setBackendData(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
-
   return (
     <>
-      <Nav class="1" />
+      <Nav class="1" dashboardRef={dashboardRef} />
       <div className="home">
         <div className="main">
           <div className="upload-section">

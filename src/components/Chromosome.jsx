@@ -31,7 +31,6 @@ const Chromosome = () => {
     const init = () => {
       renderer = new THREE.WebGLRenderer();
       renderer.setSize(mywindow.innerWidth, mywindow.innerHeight);
-      console.log(window.innerWidth, window.innerHeight);
       document.getElementById("container").appendChild(renderer.domElement);
       camera = new THREE.PerspectiveCamera(
         15,
@@ -123,7 +122,10 @@ const Chromosome = () => {
 
     loop();
     return () => {
-      document.getElementById("container").removeChild(renderer.domElement);
+      {
+        document.getElementById("container") &&
+          document.getElementById("container").removeChild(renderer.domElement);
+      }
     };
   }, []);
 
