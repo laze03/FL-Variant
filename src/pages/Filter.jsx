@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Select from "react-select";
 
 const Filter = () => {
+  // The useState hook is used to store the data fetched from the backend.
   const data = ["CHROM", "TYPE", "IMPACT", "GENE"];
   const [csvData, setCsvData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -13,12 +14,15 @@ const Filter = () => {
   const [analysisData, setAnalysisData] = useState([]);
 
   const handleSelect = (selectedOptions, filter) => {
+    // The handleSelect function is used to handle the select event on the filter options.
     const selectedValues = selectedOptions.map((option) => option.value);
     setSelected((prevState) => ({
       ...prevState,
       [filter]: selectedValues,
     }));
   };
+
+  // The useEffect hook is used to fetch data from the backend.
 
   useEffect(() => {
     axios
@@ -52,6 +56,8 @@ const Filter = () => {
     });
   }, []);
 
+  // The handleSubmit function is used to handle the submit event on the filter options.
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Selected:", selected);
@@ -71,7 +77,47 @@ const Filter = () => {
     });
   };
 
+  // The handleReport function is used to handle the report generation based on the filter options.
+
+  function handleReport(e) {
+    e.preventDefault();
+    selected
+      ? axios
+          .post("http://localhost:5000/download", selected, {
+            responseType: "blob",
+          })
+          .then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "report.pdf");
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+          })
+          .catch((error) => {
+            console.error("Error downloading the file:", error);
+            // Handle error
+          })
+      : axios
+          .get("http://localhost:5000/download", { responseType: "blob" })
+          .then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "report.pdf");
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+          })
+          .catch((error) => {
+            console.error("Error downloading the file:", error);
+            // Handle error
+          });
+  }
+
   function convertJSONToCSV(jsonData) {
+    // The convertJSONToCSV function is used to convert the JSON data to CSV.
     const header = Object.keys(jsonData[0]);
     const rows = jsonData.map((obj) => Object.values(obj));
 
@@ -81,6 +127,7 @@ const Filter = () => {
   }
 
   function handleDownload(e) {
+    // The handleDownload function is used to handle the download event on the CSV file.
     e.preventDefault();
     const csvContent = convertJSONToCSV(csvData);
     const blob = new Blob([csvContent], { type: "text/csv" });
@@ -102,13 +149,14 @@ const Filter = () => {
           <h1>Filters</h1>
           <div className="filters">
             {data.map(
+              // The map function is used to iterate over the data array.
               (filter, index) =>
                 filterData &&
                 filterData[filter] &&
                 filterData[filter].length > 0 && (
                   <div key={index} className={`filter${index % 2}`}>
                     <h3>{filter}</h3>
-                    <Select
+                    <Select // The Select component is used to display the filter options.
                       className="select"
                       options={filterData[filter].map((option) => ({
                         value: option,
@@ -130,7 +178,9 @@ const Filter = () => {
             <button className="csvB" onClick={handleDownload}>
               Donwload CSV
             </button>
-            <button className="reportB">Generate Report</button>
+            <button className="reportB" onClick={handleReport}>
+              Generate Report
+            </button>
           </div>
         </div>
         <div className="down">
@@ -139,21 +189,31 @@ const Filter = () => {
             <table className="csvTable">
               {csvData.length > 0 && (
                 <tr className="head">
-                  {Object.keys(csvData[0]).map((key, index) => (
-                    <th key={index} className={`H${index}`}>
-                      {key}
-                    </th>
-                  ))}
+                  {Object.keys(csvData[0]).map(
+                    (
+                      key,
+                      index // The map function is used to iterate over the keys of the first element of the csvData array.
+                    ) => (
+                      <th key={index} className={`H${index}`}>
+                        {key}
+                      </th>
+                    )
+                  )}
                 </tr>
               )}
               <tbody>
                 {csvData.map((row, rowIndex) => (
                   <tr className={`R${rowIndex % 2}`} key={rowIndex}>
-                    {Object.values(row).map((cell, cellIndex) => (
-                      <td key={cellIndex} className={`D${cellIndex} `}>
-                        {cell}
-                      </td>
-                    ))}
+                    {Object.values(row).map(
+                      (
+                        cell,
+                        cellIndex // The map function is used to iterate over the values of the row.
+                      ) => (
+                        <td key={cellIndex} className={`D${cellIndex} `}>
+                          {cell}
+                        </td>
+                      )
+                    )}
                   </tr>
                 ))}
               </tbody>

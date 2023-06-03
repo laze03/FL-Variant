@@ -6,8 +6,9 @@ import Footer from "../components/Footer";
 import StackedBarChartComponent from "../components/StackedBarChartComponent";
 import PieChartComponent from "../components/PieCHartComponent";
 import BarChartComponent from "../components/BarChartComponent";
-
 const Dashboard = () => {
+  // The useState hook is used to store the data fetched from the backend.
+
   const [data, setData] = useState([]);
   const [NMPIPG, setNMPIPG] = useState([]);
   const [DIPM, setDIPM] = useState([]);
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const [DPTM, setDPTM] = useState([]);
   const [NMPIPC, setNMPIPC] = useState([]);
 
+  // The useEffect hook is used to fetch data from the backend.
   useEffect(() => {
     axios
       .get("http://localhost:5000/dashboard")
@@ -48,7 +50,7 @@ const Dashboard = () => {
         console.error(err);
       });
   }, []);
-
+  // The getKeyOfMaxValue function is used to get the key of the maximum value in an object.
   function getKeyOfMaxValue(obj) {
     let max = 0;
     let keyOfMax = "";
@@ -63,45 +65,6 @@ const Dashboard = () => {
     return keyOfMax;
   }
 
-  function limit20Object(obj, listObj) {
-    let newList = [];
-    let list = [];
-    for (let i = 0; i < 20; i++) {
-      const key = getKeyOfMaxValue(obj);
-      newList.push(obj[key]);
-      delete obj[key];
-    }
-    console.log("newList: ", newList);
-    console.log("listObj: ", listObj);
-
-    for (let i = 0; i < listObj.length; i++) {
-      for (let j = 0; j < newList.length; j++) {
-        if (newList[j] === listObj[i].value) {
-          list.push(listObj[i]);
-          delete listObj[i];
-          break;
-        }
-        if (list.length === 20) {
-          break;
-        }
-      }
-    }
-
-    return list;
-  }
-
-  useEffect(() => {
-    console.log(data);
-    console.log("gene: ", NMPIPG);
-    data.nombre_de_mutations_par_impact_par_gène &&
-      // console.log(
-      //   "limit20: ",
-      //   limit20Object(data.nombre_de_mutations_par_impact_par_gène, NMPIPG)
-      // );
-      console.log(DIPM);
-    console.log(DPTM);
-  }, [data]);
-
   return (
     <>
       <Nav class="2" />
@@ -111,7 +74,7 @@ const Dashboard = () => {
             <h2>
               Impact distribution per <br /> mutation
             </h2>
-            <PieChartComponent
+            <PieChartComponent // The PieChartComponent is used to render the pie chart.
               data={DIPM}
               labelList={0}
               datakey="value"
@@ -123,7 +86,7 @@ const Dashboard = () => {
               {" "}
               Gene distribution by <br /> chromosome
             </h2>
-            <BarChartComponent
+            <BarChartComponent // The BarChartComponent is used to render the bar chart.
               data={DGPC}
               Xdatakey="chromosome"
               Ydatakey="nombre de gènes mutés"
@@ -155,7 +118,7 @@ const Dashboard = () => {
           </div>
           <div className="chart">
             <h2>Number of mutations per impact per chromosome</h2>
-            <StackedBarChartComponent
+            <StackedBarChartComponent // The StackedBarChartComponent is used to render the stacked bar chart.
               data={NMPIPC}
               dataKeys={["MODIFIER", "LOW", "MODERATE", "HIGH"]}
             />

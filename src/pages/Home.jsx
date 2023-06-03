@@ -1,3 +1,5 @@
+//The imports section includes the necessary components and dependencies for the home page.
+
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Chromosome from "../components/Chromosome";
@@ -6,14 +8,18 @@ import { useRef, useState, useEffect } from "react";
 import "../App.css";
 import science from "../assets/science.png";
 
+//The Home component is the main page of the website. It includes the upload section, animation section, and about section.
 const Home = () => {
   const inputRef = useRef(null);
   const dashboardRef = useRef(null);
   const [backendData, setBackendData] = useState([]);
-
-  const handleFileUpload = (file) => {
+  // The useEffect hook is used to fetch data from the backend.
+  const handleFileUpload = (files) => {
     const formData = new FormData();
-    formData.append("file", file);
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+    // The axios library is used to make a POST request to the backend.
     axios
       .post("http://localhost:5000/upload", formData, {
         headers: {
@@ -24,11 +30,11 @@ const Home = () => {
         dashboardRef.current.click(); // Redirect to dashboard
       });
   };
-
+  // The handleClick function is used to handle the click event on the upload button.
   const handleClick = () => {
     inputRef.current.click();
   };
-
+  // The useEffect hook is used to fetch data from the backend.
   return (
     <>
       <Nav class="1" dashboardRef={dashboardRef} />
@@ -50,15 +56,16 @@ const Home = () => {
               Upload VCF file
             </button>
             <input
-              ref={inputRef}
-              type="file"
-              onChange={(e) => handleFileUpload(e.target.files[0])}
-              accept=".vcf"
-              placeholder="upload file"
+              ref={inputRef} // The inputRef is used to reference the input element.
+              type="file" // The input element is used to upload the file.
+              onChange={(e) => handleFileUpload(e.target.files)} // The onChange event is used to handle the file upload.
+              multiple // The multiple attribute is used to allow multiple files to be uploaded.
+              accept=".vcf" // The accept attribute is used to specify the file types that the server accepts.
+              placeholder="upload file" // The placeholder attribute is used to specify a short hint that describes the expected value of the input field.
             />
           </div>
           <div className="animation-section">
-            <Chromosome />
+            <Chromosome /* the interactive Chromosome */ />
           </div>
         </div>
 
