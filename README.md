@@ -5,14 +5,14 @@ This repository contains the Front End code for the FL Variant project. To get s
 1. Visit [https://github.com/laze03/FL-Variant-Server](https://github.com/laze03/FL-Variant-Server) to download the server-side code for FL Variant.
 2. Follow the instructions provided to set up and run the server.
 
-## Running the Server
+## Downloading files
 
 Once the server is running, follow these steps to run the Front End code:
 
 1. Download or clone this repository.
 2. Navigate to the main folder of the Front End code in your terminal.
 
-## Installing Dependencies
+## Installing Dependencies & running the Server
 
 In the terminal, run the following commands:
 
