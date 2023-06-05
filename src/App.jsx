@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/FL-Variant/upload" element={<Home />}></Route>
+        <Route exact path="/FL-Variant/" element={<Home />}></Route>
         <Route
           exact
           path="/FL-Variant/dashboard"
