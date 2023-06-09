@@ -30,7 +30,7 @@ const Dashboard = () => {
         );
         setDGPC(
           Object.entries(res.data.distribution_des_gènes_par_chromosome).map(
-            ([name, value]) => ({ name, "nombre de gènes mutés": value })
+            ([name, value]) => ({ name, "number of mutated genes": value })
           )
         );
         setDPTM(res.data.distribution_par_type_de_mutation);
@@ -69,60 +69,53 @@ const Dashboard = () => {
     <>
       <Nav class="2" />
       <div className="dashboard">
-        <div className="charts">
-          <div className="chart upchart">
-            <h2>
-              Impact distribution per <br /> mutation
-            </h2>
-            <PieChartComponent // The PieChartComponent is used to render the pie chart.
-              data={DIPM}
-              labelList={0}
-              datakey="value"
-              height={500}
-            />
-          </div>
-          <div className="chart">
-            <h2>
-              {" "}
-              Gene distribution by <br /> chromosome
-            </h2>
-            <BarChartComponent // The BarChartComponent is used to render the bar chart.
-              data={DGPC}
-              Xdatakey="chromosome"
-              Ydatakey="nombre de gènes mutés"
-            />
-          </div>
+        <div className=" c1 charts">
+          <h2>
+            Impact distribution per <br /> mutation
+          </h2>
+          <PieChartComponent // The PieChartComponent is used to render the pie chart.
+            data={DIPM}
+            labelList={0}
+            datakey="value"
+            height={500}
+          />
         </div>
-        <div className="charts mcharts">
-          <div className="chart mchart">
-            <h2>Distribution by mutation type</h2>
-            <PieChartComponent
-              data={DPTM}
-              labelList={1}
-              datakey="nombre de mutation"
-              height={1030}
-              width={600}
-              radius={280}
-            />
-          </div>
+        <div className=" c2 charts">
+          <h2>
+            Gene distribution by <br /> chromosome
+          </h2>
+          <BarChartComponent // The BarChartComponent is used to render the bar chart.
+            data={DGPC}
+            Xdatakey="chromosome"
+            Ydatakey="number of mutated genes"
+          />
         </div>
-        <div className="charts">
-          <div className="chart upchart">
-            <h2>Number of mutations per impact per gene</h2>
-            <PieChartComponent
-              data={NMPIPG}
-              labelList={1}
-              datakey="value"
-              height={500}
-            />
-          </div>
-          <div className="chart">
-            <h2>Number of mutations per impact per chromosome</h2>
-            <StackedBarChartComponent // The StackedBarChartComponent is used to render the stacked bar chart.
-              data={NMPIPC}
-              dataKeys={["MODIFIER", "LOW", "MODERATE", "HIGH"]}
-            />
-          </div>
+        <div className="c3  charts">
+          <h2>Distribution by mutation type</h2>
+          <PieChartComponent
+            data={DPTM}
+            labelList={1}
+            datakey="nombre de mutation"
+            height={1030}
+            width={600}
+            radius={280}
+          />
+        </div>
+        <div className="c4 charts">
+          <h2>Number of mutations per impact per gene</h2>
+          <PieChartComponent
+            data={NMPIPG}
+            labelList={1}
+            datakey="value"
+            height={500}
+          />
+        </div>
+        <div className="c5 charts">
+          <h2>Number of mutations per impact per chromosome</h2>
+          <StackedBarChartComponent // The StackedBarChartComponent is used to render the stacked bar chart.
+            data={NMPIPC}
+            dataKeys={["MODIFIER", "LOW", "MODERATE", "HIGH"]}
+          />
         </div>
       </div>
       <Footer />

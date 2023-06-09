@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Chromosome from "../components/Chromosome";
 import axios from "axios";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import "../App.css";
 import science from "../assets/science.png";
 
@@ -12,7 +12,6 @@ import science from "../assets/science.png";
 const Home = () => {
   const inputRef = useRef(null);
   const dashboardRef = useRef(null);
-  const [backendData, setBackendData] = useState([]);
   // The useEffect hook is used to fetch data from the backend.
   const handleFileUpload = (files) => {
     const formData = new FormData();
@@ -34,7 +33,19 @@ const Home = () => {
   const handleClick = () => {
     inputRef.current.click();
   };
-  // The useEffect hook is used to fetch data from the backend.
+
+  const handleDownload = async () => {
+    console.log("Current directory:", window.location.pathname);
+    const response = await fetch("./sample.vcf"); // Replace with the actual path to the sample.vcf file
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "sample.vcf";
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <>
       <Nav class="1" dashboardRef={dashboardRef} />
@@ -52,9 +63,14 @@ const Home = () => {
             </p>
             <br />
             <p>get started by uploading your file now!</p>
-            <button type="button" onClick={handleClick} className="submit">
-              Upload VCF file
-            </button>
+            <div className="buttons">
+              <button type="button" onClick={handleClick} className="submit">
+                Upload VCF file
+              </button>
+              <button className="vcf" onClick={handleDownload}>
+                Download VCF sample
+              </button>
+            </div>
             <input
               ref={inputRef} // The inputRef is used to reference the input element.
               type="file" // The input element is used to upload the file.

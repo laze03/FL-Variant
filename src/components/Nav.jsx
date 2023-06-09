@@ -11,7 +11,7 @@ const Nav = (props) => (
     <div className="nav-items">
       <ul className="nav-list">
         <li className={`nav-item ${props.class == "1" ? "yes" : "no"}`}>
-          <Link to="/FL-Variant/upload">Upload</Link>
+          <Link to="/FL-Variant/">Upload</Link>
         </li>
         <li className={`nav-item ${props.class == "2" ? "yes" : "no"}`}>
           <Link ref={props.dashboardRef} to="/FL-Variant/dashboard">

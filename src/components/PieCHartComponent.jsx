@@ -84,14 +84,6 @@ export default function PieChartComponent(props) {
         {props.data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
-        {props.labelList && (
-          <LabelList
-            className="textspan"
-            dataKey={props.datakey}
-            position="outside"
-            fill={"#002b99"}
-          />
-        )}
       </Pie>
     </PieChart>
   );
