@@ -1,8 +1,8 @@
 # FL Variant Web App
 
-## General Introduction
+## Introduction
 
-This file is a synthesis of the work conducted during the project. It is organized into several sections to provide a comprehensive understanding of the different pillars, components, and implementation steps involved. To facilitate comprehension, it is preferable to have a basic understanding of bioinformatics. Bioinformatics is a discipline that combines biology and computer science to analyze and interpret large-scale biological data. In this project, bioinformatics plays a crucial role in processing VCF (Variant Call Format) files, annotating mutations, classifying variants, and visually representing the results. By combining computer science and biology skills, this project highlights the growing importance of bioinformatics in the fields of genomics and personalized medicine.
+This documentation is a synthesis of the work conducted during the project. It is organized into several sections to provide a comprehensive understanding of the different pillars, components, and implementation steps involved. To facilitate comprehension, it is preferable to have a basic understanding of bioinformatics. Bioinformatics is a discipline that combines biology and computer science to analyze and interpret large-scale biological data. In this project, bioinformatics plays a crucial role in processing VCF (Variant Call Format) files, annotating mutations, classifying variants, and visually representing the results. By combining computer science and biology skills, this project highlights the growing importance of bioinformatics in the fields of genomics and personalized medicine.
 
 ## Objectives
 
