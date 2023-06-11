@@ -222,7 +222,7 @@ const Filter = () => {
           <div className="analysis">
             <h1>Analysis</h1>
             <div className="analysisText">
-              Ce tableau contient{" "}
+              This table contains{" "}
               <span>
                 {analysisData &&
                   analysisData["counts"] &&
@@ -232,7 +232,7 @@ const Filter = () => {
                   )}{" "}
                 {analysisData && analysisData["mutationType"]}{" "}
               </span>
-              composés des types suivants:
+              consisting of the following types:
               <br />
               <br />
               {analysisData &&
@@ -248,9 +248,9 @@ const Filter = () => {
                 analysisData["mutationType"] &&
                 analysisData["mutationType"] === "INDEL" && (
                   <div className="divMargin">
-                    Resultant en <span>{analysisData["insertionsCount"]}</span>{" "}
-                    insertions et <span>{analysisData["deletionsCount"]}</span>{" "}
-                    suppressions.
+                    Resulting in <span>{analysisData["insertionsCount"]}</span>{" "}
+                    insertions & <span>{analysisData["deletionsCount"]}</span>{" "}
+                    deletions.
                   </div>
                 )}
             </div>
