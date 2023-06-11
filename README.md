@@ -46,27 +46,54 @@ Please note that this is a high-level overview of the required features. Additio
 Homepage:
 As shown below, the homepage of our FL Variant website presents the site's features with a theme that aligns with the field of bioinformatics, including colors and a 3D animation of DNA. On the top navigation bar, you can find buttons to choose the specific functionality of the site you want to explore.
 
-![Figure 14: FL Variant Homepage](screens/uploadpng.png)
+<p align="center">
+  <img src="screens/uploadpng.png" alt="Figure 14: FL Variant Homepage" width="1000">
+  <br/>
+  <p align="center" >Picture: FL Variant Homepage</p>
+</p>
+
+<br/>
 
 Dashboard:
 The dashboard, depicted in the figure below, consists of a set of clear and concise data visualization charts. The charts are accompanied by titles and legends to enhance data understanding.
 
-![Figure 15: FL Variant Dashboard](screens/dashboard.png)
+<p align="center">
+  <img src="screens/dashboard.png" alt="Figure 15: FL Variant Dashboard" width="1000">
+  <p align="center" >Picture: FL Variant Dashboard</p>
+</p>
+
+<br/>
 
 It's worth mentioning that when hovering over the bars in bar charts, a description appears, as shown in the figure below:
 
-![Figure 16: One of the Dashboard Charts in FL Variant](screens/chart.png)
+<p align="center">
+  <img src="screens/chart.png" alt="Figure 15: One of the Dashboard Charts in FL Variant" width="1000">
+  <p align="center" >Picture: One of the Dashboard Charts in FL Variant</p>
+</p>
+
+<br/>
 
 Filters:
 First and foremost, please note that this section of FL Variant displays the CSV content in the form of a table for better reliability and transparency to the user. Above the table, there are dropdown menus to select the parameters for data filtering. Additionally, users can download the CSV file containing the extracted data from the VCF file. At the bottom right of this page, there is an analysis of the CSV types. After clicking the "Apply filters" button, the filtered table will be displayed. The FL Variant filter offers the flexibility for users to filter based on multiple parameter combinations, ensuring a comfortable and unrestricted user experience. It's important to mention that this page allows users to download the filtered version of the initial CSV and generate a report containing all the data visualized during their interaction with FL Variant.
 
 Here's how the FILTERS section appears in our FL Variant:
 
-![Figure 17: FL Variant Filters Page](screens/Table.png)
+<p align="center">
+  <img src="screens/Table.png" alt="Figure 15: FL Variant Filters Page" width="1000">
+  <p align="center" >Picture:  FL Variant Filters Page</p>
+</p>
+
+<br/>
 
 Furthermore, the figure below showcases an example of filtering in FL Variant:
 
-![Figure 18: Example of Filtering in FL Variant](screens/filteredTable.png)
+<p align="center">
+  <img src="screens/filteredTable.png" alt="Figure 15: Example of Filtering in FL Variant" width="1000">
+  <p align="center" >Picture: Example of Filtering in FL Variant</p>
+</p>
+
+<br/>
+
 
 ## Installation
 
